@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Qlocka – Designed To Make Life Easier</title>
+  <title>Qlocka – Neuro-Encoding Tool For Children</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
+    /* Smooth scrolling base (CSS) */
+    html {
+      scroll-behavior: smooth;
+    }
+
     /* --------------------
        COLOUR PALETTE
        -------------------- */
@@ -44,9 +49,6 @@
       text-decoration: none;
     }
 
-    /* --------------------
-       GLOBAL LAYOUT
-       -------------------- */
     .page {
       min-height: 100vh;
       display: flex;
@@ -166,9 +168,7 @@
       width: 100%;
     }
 
-    /* --------------------
-       HERO SECTION
-       -------------------- */
+    /* HERO */
     .hero {
       padding-top: 2.5rem;
       display: grid;
@@ -279,23 +279,9 @@
       color: #0f172a;
       font-weight: 600;
       box-shadow: 0 16px 40px rgba(248, 113, 113, 0.45);
-    }
-
-    .hero-cta-secondary {
-      border-radius: 999px;
-      padding: 0.7rem 1.3rem;
-      font-size: 0.85rem;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      color: var(--text-muted);
       display: inline-flex;
       align-items: center;
-      gap: 0.45rem;
-      background: radial-gradient(circle at top left, #111827 0, #020617 70%);
-      cursor: pointer;
-    }
-
-    .hero-cta-secondary span {
-      font-size: 1.1rem;
+      justify-content: center;
     }
 
     .hero-note {
@@ -304,7 +290,6 @@
       max-width: 20rem;
     }
 
-    /* Hero Visual */
     .hero-visual {
       position: relative;
     }
@@ -444,9 +429,7 @@
       box-shadow: 0 0 14px rgba(248, 250, 252, 0.7);
     }
 
-    /* --------------------
-       SECTION BASE
-       -------------------- */
+    /* SECTIONS BASE */
     section {
       margin-top: 4rem;
     }
@@ -479,9 +462,7 @@
       max-width: 25rem;
     }
 
-    /* --------------------
-       PROBLEM SECTION
-       -------------------- */
+    /* PROBLEM */
     .problem-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
@@ -518,9 +499,7 @@
       color: var(--text-muted);
     }
 
-    /* --------------------
-       HOW IT HELPS SECTION
-       -------------------- */
+    /* BENEFITS */
     .benefit-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -601,9 +580,7 @@
       opacity: 0.9;
     }
 
-    /* --------------------
-       HOW IT WORKS
-       -------------------- */
+    /* HOW IT WORKS */
     .steps-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -641,9 +618,40 @@
       color: var(--text-muted);
     }
 
-    /* --------------------
-       SOCIAL PROOF / FUTURE USERS
-       -------------------- */
+    /* HYBRID KIT + APP */
+    .kit-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.7rem;
+      align-items: flex-start;
+    }
+
+    .kit-card,
+    .kit-card-alt {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 1.2rem 1.3rem;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .kit-card h3,
+    .kit-card-alt h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.45rem;
+      color: var(--text-main);
+    }
+
+    .kit-card ul,
+    .kit-card-alt ul {
+      margin-top: 0.4rem;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.25rem;
+    }
+
+    /* SOCIAL PROOF / WHO FOR */
     .social-proof {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
@@ -705,9 +713,7 @@
       color: var(--text-muted);
     }
 
-    /* --------------------
-       FAQ
-       -------------------- */
+    /* FAQ */
     .faq-grid {
       display: grid;
       grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
@@ -749,9 +755,7 @@
       color: var(--text-main);
     }
 
-    /* --------------------
-       FOOTER
-       -------------------- */
+    /* FOOTER */
     footer {
       border-top: 1px solid rgba(148, 163, 184, 0.2);
       margin-top: 3.5rem;
@@ -775,9 +779,7 @@
       gap: 1rem;
     }
 
-    /* --------------------
-       RESPONSIVE
-       -------------------- */
+    /* RESPONSIVE */
     @media (max-width: 900px) {
       .hero {
         grid-template-columns: minmax(0, 1fr);
@@ -787,7 +789,8 @@
       }
       .problem-grid,
       .social-proof,
-      .faq-grid {
+      .faq-grid,
+      .kit-grid {
         grid-template-columns: minmax(0, 1fr);
       }
       .benefit-grid,
@@ -823,17 +826,18 @@
       <nav class="nav">
         <div class="brand">
           <div class="brand-logo">
-            <div class="brand-logo-inner">P</div>
+            <div class="brand-logo-inner">Q</div>
           </div>
           <div>
             <div class="brand-text-title">Qlocka</div>
-            <div class="badge-soon">Thoughtfully in development</div>
+            <div class="badge-soon">Launching soon · Ages 6+</div>
           </div>
         </div>
         <div class="nav-links">
-          <a href="#why">Why it exists</a>
+          <a href="#why">Why Qlocka</a>
           <a href="#benefits">How it helps</a>
-          <a href="#how-it-works">How it works</a>
+          <a href="#how-it-works">Daily routine</a>
+          <a href="#kit">Board & app</a>
           <a href="#faq">Questions</a>
         </div>
       </nav>
@@ -846,44 +850,44 @@
         <div>
           <div class="eyebrow">
             <span class="eyebrow-dot"></span>
-            Built for people who are tired of [the problem]
+            Neuro-encoding tool for children · Character: QT
           </div>
 
           <h1 class="hero-title">
-            A calmer, smarter way to handle
-            <span class="hero-gradient-text">[the thing your product manages]</span>.
+            A playful way for kids to
+            <span class="hero-gradient-text">build powerful daily habits</span>.
           </h1>
 
           <p class="hero-lede">
-            Qlocka isn’t here to be “just another” tool. It’s being designed
-            to quietly remove friction from your day, give you back mental space,
-            and make the helpful habits the easy habits.
+            Qlocka is a daily planning tool that helps children turn routines into
+            confidence. Using simple magnets, visual planning and positive
+            reinforcement, kids learn to organise their day, follow through on what
+            they planned and celebrate their own progress.
           </p>
 
           <div class="hero-points">
             <div class="hero-pill">
               <span class="hero-pill-dot"></span>
-              Reduce daily micro-stress
+              Ages 6–12 and beyond
             </div>
             <div class="hero-pill">
               <span class="hero-pill-dot"></span>
-              Turn intentions into simple systems
+              Backed by neuroscience
             </div>
             <div class="hero-pill">
               <span class="hero-pill-dot"></span>
-              Built for real, messy lives
+              Built for busy families
             </div>
           </div>
 
           <div class="hero-actions">
-            <button class="hero-cta-primary">
-              Get early access updates
-            </button>
-            <button class="hero-cta-secondary">
-              <span>⟶</span> See why this matters
-            </button>
+            <!-- Primary CTA: link to "Why Qlocka" section -->
+            <a href="#why" class="hero-cta-primary">
+              See how Qlocka works
+            </a>
             <p class="hero-note">
-              No spam. Just occasional, honest updates as Qlocka takes shape.
+              No purchase yet. Just honest updates as Qlocka grows across
+              Australia, Malaysia and worldwide.
             </p>
           </div>
         </div>
@@ -891,47 +895,50 @@
         <!-- HERO VISUAL / STATS -->
         <div class="hero-visual">
           <div class="glass-card">
-            <div class="stat-tag">Work in progress • Private beta soon</div>
+            <div class="stat-tag">Tested with real families over six months</div>
             <div class="product-name">
               Qlocka
               <span style="font-size: 0.75rem; color: var(--text-muted);">
-                · [Short descriptor e.g. “Daily rhythm companion”]
+                · Neuro-encoding routine companion
               </span>
             </div>
             <p class="product-tagline">
-              Designed to make doing the right thing feel natural, not forced.
+              Empowering children. Equipping parents. Enhancing routines.
             </p>
 
             <div class="metric-grid">
               <div class="metric-card">
-                <div class="metric-value">+90%</div>
+                <div class="metric-value">2–4 weeks</div>
                 <div class="metric-label">
-                  Users reported feeling more “in control” of their day after 2 weeks
-                  in prototype tests.
+                  Most families began noticing better focus, smoother mornings and
+                  more follow-through on daily tasks.
                 </div>
               </div>
               <div class="metric-card">
-                <div class="metric-value">12 min</div>
+                <div class="metric-value">90 days</div>
                 <div class="metric-label">
-                  Average time saved per day by removing tiny, repeated decisions.
+                  Children developed stronger independence, self-motivation and
+                  ownership of routines.
                 </div>
               </div>
               <div class="metric-card">
-                <div class="metric-value">0</div>
+                <div class="metric-value">↓ stress</div>
                 <div class="metric-label">
-                  Pressure to be perfect. Built for small, sustainable progress.
+                  Parents reported calmer days, more cooperation and less conflict
+                  over everyday routines.
                 </div>
               </div>
             </div>
 
             <div class="metric-tag-chip">
               <span class="metric-tag-chip-dot"></span>
-              Early testers say it “feels like someone quietly got my life”.
+              “It feels like our child finally knows what to do next.”
             </div>
 
             <div class="problem-solution-tag">
-              You already know what you “should” do.
-              <strong>We’re focused on making it actually happen.</strong>
+              Children already know what they “should” do —
+              <strong>Qlocka helps their brain, body and emotions work together
+              so it actually happens.</strong>
             </div>
 
             <div class="orbit">
@@ -943,43 +950,43 @@
         </div>
       </section>
 
-      <!-- PROBLEM SECTION -->
+      <!-- WHY / PROBLEM -->
       <section id="why">
         <div class="section-header">
           <div>
-            <div class="section-kicker">The real problem</div>
+            <div class="section-kicker">Why Qlocka exists</div>
             <div class="section-title">
-              It’s not that you don’t care. It’s that life is loud.
+              Mornings are loud. Bedtimes are busy. Routines often fall apart.
             </div>
           </div>
           <p class="section-subtitle">
-            Most people already know what they want to improve. The gap is between
-            <em>knowing</em> and <em>consistently doing</em> — especially when you’re
-            busy, tired, or pulled in a dozen directions.
+            Many children struggle with planning, follow-through and emotional
+            regulation. Parents juggle work, school, screens and expectations —
+            wishing there was a kinder, clearer way to build good habits that last.
           </p>
         </div>
 
         <div class="problem-grid">
           <div class="problem-card">
-            <h3>Modern life is a constant notification.</h3>
+            <h3>Modern life overwhelms growing brains.</h3>
             <p>
-              Between work, family, and screens, our attention is split into tiny
-              pieces. Good habits and helpful routines get squeezed into the gaps —
-              or pushed to “tomorrow”.
+              Between homework, activities, screens and social life, children face
+              a lot of daily decisions. Without a simple structure:
             </p>
             <ul>
-              <li>Important tasks blend into an endless to-do list.</li>
-              <li>Reminders nag, but rarely support you in a meaningful way.</li>
-              <li>You’re left feeling behind, even on the days you did a lot.</li>
+              <li>Important tasks get forgotten or left until the last minute.</li>
+              <li>Morning and bedtime routines turn into power struggles.</li>
+              <li>Parents become the “constant reminder”, which strains connection.</li>
             </ul>
           </div>
 
           <div class="problem-card problem-highlight">
             <p>
-              Qlocka is being built for this reality — not an idealised,
-              perfectly organised life. The goal is simple:
-              <strong>help you feel grounded, even when everything around you is
-              moving fast.</strong>
+              Qlocka is built on a simple truth:
+              <strong>repetition shapes the brain.</strong> Through small, daily
+              routines, it helps children form strong neural pathways for planning,
+              focus and follow-through — especially between ages 6 and 12, when the
+              brain is highly adaptable and ready to encode lifelong habits.
             </p>
           </div>
         </div>
@@ -989,54 +996,56 @@
       <section id="benefits">
         <div class="section-header">
           <div>
-            <div class="section-kicker">How it helps</div>
+            <div class="section-kicker">How Qlocka helps</div>
             <div class="section-title">
-              Gentle structure, without the overwhelm.
+              A fun, visual system that quietly rewires habits.
             </div>
           </div>
           <p class="section-subtitle">
-            Think of Qlocka as a quiet co-pilot. It doesn’t shout for your
-            attention — it nudges, organises, and clears the path so you can do the
-            things that matter with less resistance.
+            Qlocka uses magnets, planning rituals and rewards to combine
+            neuroscience with everyday family life. It doesn’t just track tasks — 
+            it transforms behaviour through repetition, emotion and action.
           </p>
         </div>
 
         <div class="benefit-grid">
           <article class="benefit-card">
-            <div class="benefit-icon bg-1">🧭</div>
-            <h3 class="benefit-title">Turns chaos into clear next steps.</h3>
+            <div class="benefit-icon bg-1">🧠</div>
+            <h3 class="benefit-title">Supports brain development & focus.</h3>
             <p>
-              Instead of dumping everything into a giant list, Qlocka helps
-              you see just the <strong>one or two things</strong> that matter right
-              now — based on your energy, time, and priorities.
+              Qlocka is rooted in neuroencoding principles — visualising, speaking
+              and physically placing tasks activates multiple parts of the brain.
+              Over time, this strengthens executive functioning skills like
+              planning, working memory and impulse control.
             </p>
             <div class="benefit-footer">
-              You decide the direction. It helps you choose the next step.
+              Kids aren’t just “doing chores”; they’re training their brain.
             </div>
           </article>
 
           <article class="benefit-card">
             <div class="benefit-icon bg-2">🌱</div>
-            <h3 class="benefit-title">Builds habits that actually fit your life.</h3>
+            <h3 class="benefit-title">Builds independence and confidence.</h3>
             <p>
-              Instead of forcing strict routines, it helps you design
-              <strong>flexible rhythms</strong> that adapt when your day doesn’t go
-              to plan — without the guilt spiral.
+              Children choose their own activities (with guidance), place the
+              magnets and follow their plan. Each completed task becomes a tiny
+              win, reinforcing self-belief, responsibility and a growth mindset.
             </p>
             <div class="benefit-footer">
-              Progress is measured in consistency over time, not perfection.
+              “I did it myself” becomes a daily reality — not just a slogan.
             </div>
           </article>
 
           <article class="benefit-card">
-            <div class="benefit-icon bg-3">🧠</div>
-            <h3 class="benefit-title">Gives your brain fewer things to juggle.</h3>
+            <div class="benefit-icon bg-3">🏡</div>
+            <h3 class="benefit-title">Creates calmer, more connected families.</h3>
             <p>
-              Offload recurring decisions and small tasks. Free up mental space for
-              focus, creativity, and being present with the people you care about.
+              Instead of constant reminders, parents join a nightly planning ritual,
+              offer encouragement and celebrate effort with simple rewards like
+              ice cream, movie nights or special time together.
             </p>
             <div class="benefit-footer">
-              Less decision fatigue, more clarity.
+              Less nagging. More teamwork, trust and communication.
             </div>
           </article>
         </div>
@@ -1046,101 +1055,168 @@
       <section id="how-it-works">
         <div class="section-header">
           <div>
-            <div class="section-kicker">Simple flow</div>
+            <div class="section-kicker">Daily rhythm</div>
             <div class="section-title">
-              Designed to fit into your day in minutes.
+              Three simple steps, repeated every day.
             </div>
           </div>
           <p class="section-subtitle">
-            You don’t need another full-time “system” to maintain. The first version
-            of Qlocka is focused on a light, repeatable daily flow that takes
-            less than 5 minutes.
+            Qlocka follows a clear daily process that mirrors the habit loop:
+            Cue → Action → Reward. Children see, do and celebrate — building
+            powerful routines in a gentle, sustainable way.
           </p>
         </div>
 
         <div class="steps-grid">
           <article class="step-card">
             <div class="step-number">01</div>
-            <div class="step-label">Start with what’s real.</div>
+            <div class="step-label">Plan the day (each night before bed).</div>
             <p>
-              Quickly capture what’s on your plate — work, family, personal — without
-              overthinking. Just brain-dump the noise.
+              Together, you and your child choose 3–5 meaningful tasks for tomorrow
+              — like “make bed”, “homework”, “reading”, “help with chores” or
+              “gratitude moment”. Magnets are placed on Qlocka at chosen times.
             </p>
             <p class="step-meta">
-              The product will gently group, prioritise, and surface what actually
-              needs your attention.
+              This simple ritual trains the subconscious, builds organisation and
+              helps children visualise their day ahead.
             </p>
           </article>
 
           <article class="step-card">
             <div class="step-number">02</div>
-            <div class="step-label">Choose your “minimums”.</div>
+            <div class="step-label">Take action and follow through.</div>
             <p>
-              Set tiny, non-intimidating commitments you can keep even on busy days.
-              These become your <strong>anchor habits</strong>.
+              The next day, your child follows the plan they created. Each magnet
+              completed is checked off, bringing a sense of accomplishment and
+              self-discipline.
             </p>
             <p class="step-meta">
-              Over time, these anchors compound into real momentum.
+              Thought → Physical action → Implementation — repeated until it feels
+              natural.
             </p>
           </article>
 
           <article class="step-card">
             <div class="step-number">03</div>
-            <div class="step-label">Reflect, adjust, repeat.</div>
+            <div class="step-label">Reflect, celebrate and reward.</div>
             <p>
-              At the end of the day, take a moment to check in. What worked? What
-              didn’t? Qlocka learns and adapts with you.
+              At the end of the day, you review Qlocka together. Effort is praised,
+              not perfection. Weekly rewards like outings or treats reinforce the
+              habit loop and build emotional resilience.
             </p>
             <p class="step-meta">
-              The product evolves around your reality — not the other way around.
+              Children learn that consistency and effort lead to progress, pride and
+              positive emotions.
             </p>
           </article>
         </div>
       </section>
 
-      <!-- SOCIAL PROOF / FUTURE USERS -->
-      <section>
+      <!-- HYBRID KIT + APP -->
+      <section id="kit">
         <div class="section-header">
           <div>
-            <div class="section-kicker">Who this is for</div>
+            <div class="section-kicker">What’s inside</div>
             <div class="section-title">
-              Built for humans with full, imperfect lives.
+              A tactile board, activity magnets and a smart companion app.
             </div>
           </div>
           <p class="section-subtitle">
-            Whether you’re juggling work and family, studying, building something on
-            the side — or all of the above — Qlocka is for people who are
-            done with “hustle harder” and ready for “live better”.
+            Qlocka is a hybrid system — combining the grounding power of a
+            screen-free board with the flexibility of a mobile app for families on
+            the go.
+          </p>
+        </div>
+
+        <div class="kit-grid">
+          <div class="kit-card">
+            <h3>The Qlocka board & magnets.</h3>
+            <p>
+              The physical Qlocka set includes 25+ thoughtfully designed activity
+              magnets that represent common daily tasks and habits. Children tag
+              them onto the board at specific times they choose for the next day.
+            </p>
+            <ul>
+              <li>Qlocka planning board</li>
+              <li>Activity magnets or custom tiles</li>
+              <li>Reward chart & sticker system</li>
+              <li>Parental guidebook</li>
+            </ul>
+            <p style="margin-top:0.6rem;">
+              This simple practice strengthens time management, self-discipline and
+              independence — one magnet at a time.
+            </p>
+          </div>
+
+          <div class="kit-card-alt">
+            <h3>The Qlocka companion app.</h3>
+            <p>
+              The app extends the Qlocka experience for children and parents who
+              want digital support alongside the board.
+            </p>
+            <ul>
+              <li>Gamified progress: stars, badges and streaks for consistency.</li>
+              <li>Customisable routines with icons, colours and reminders.</li>
+              <li>Parent dashboard with smart notifications and growth insights.</li>
+              <li>Shared access for multiple caregivers, teachers or therapists.</li>
+            </ul>
+            <p style="margin-top:0.6rem;">
+              Together, the board and app create a full-circle routine system that
+              adapts to home, school, holidays and everything in between.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHO IT'S FOR / NEURODIVERSE -->
+      <section>
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Who Qlocka supports</div>
+            <div class="section-title">
+              Inclusive by design — at home, in schools and in therapy.
+            </div>
+          </div>
+          <p class="section-subtitle">
+            Qlocka was intentionally created for diverse learners, including children
+            with ADHD, autism spectrum disorder, dyslexia or other learning and
+            attention differences, as well as busy families everywhere.
           </p>
         </div>
 
         <div class="social-proof">
           <div class="quote-card">
             <div class="quote-body">
-              “I don’t need another app telling me I’m behind. I need something that
-              understands that some days are heavy, some days are light — and helps
-              me navigate both without feeling like I failed.”
+              Qlocka breaks the day into clear, visual chunks — reducing overwhelm
+              and helping children know exactly what comes next. The tactile act of
+              moving magnets anchors routines in their mind and body, while
+              predictable rhythms build a sense of safety and control.
             </div>
             <div class="quote-author">
-              This is the feeling Qlocka is being built around —
-              <span>soft structure, strong support.</span>
+              In other words, it’s
+              <span>gentle structure that neurodiverse children can trust</span>.
             </div>
 
             <div class="badge-row">
-              <div class="soft-pill">Thoughtful, not shouty</div>
-              <div class="soft-pill">Flexible, not fragile</div>
-              <div class="soft-pill">Human-first, not feature-first</div>
+              <div class="soft-pill">Visual and tactile</div>
+              <div class="soft-pill">Predictable yet flexible</div>
+              <div class="soft-pill">Child-led, not controlling</div>
+              <div class="soft-pill">Ideal for ADHD & ASD support</div>
             </div>
           </div>
 
           <div class="faq-cta">
-            <strong>Right now, we’re listening.</strong><br /><br />
-            We’re in the stage of talking to real people living real, busy lives.
-            If any of this resonates with you, you’re exactly who we’re building for.
-            <br /><br />
-            Want to share what you struggle with most? Add your email to the early
-            access list above, and we’ll invite you to a short, no-pressure
-            conversation as we shape Qlocka.
+            <strong>Qlocka grows with your child.</strong><br /><br />
+            It can be used:
+            <ul style="margin-top:0.4rem; padding-left:1.1rem;">
+              <li>At home to smooth mornings, homework time and bedtimes.</li>
+              <li>In classrooms to encourage self-directed learning.</li>
+              <li>In coaching and therapy to support routines and emotional regulation.</li>
+              <li>With siblings, each having their own profile or shared goals.</li>
+            </ul>
+            <br />
+            The aim is the same everywhere: to help children lead themselves with
+            confidence.
           </div>
         </div>
       </section>
@@ -1151,62 +1227,92 @@
           <div>
             <div class="section-kicker">Questions</div>
             <div class="section-title">
-              A few things you might be wondering.
+              What parents often ask about Qlocka.
             </div>
           </div>
           <p class="section-subtitle">
-            We’re still early — which means things will evolve. Here’s what we know
-            for sure, and what we’re still exploring.
+            Qlocka is still in development, but its principles and daily process are
+            already clear. Here are answers to some of the most common questions.
           </p>
         </div>
 
         <div class="faq-grid">
           <div class="faq-list">
             <div class="faq-item">
-              <div class="faq-q">Is this available to use right now?</div>
+              <div class="faq-q">What exactly is Qlocka?</div>
               <p>
-                Not yet. We’re still refining the experience with a small group of
-                early testers. If you join the early access list, you’ll be the
-                first to know when we open the doors.
+                Qlocka is a powerful daily planning tool that uses neuroencoding
+                principles to support children’s brain development, habit formation
+                and emotional growth. Through consistent routines and positive
+                reinforcement, it helps children build confidence, independence and
+                self-discipline.
               </p>
             </div>
 
             <div class="faq-item">
-              <div class="faq-q">Is this another productivity app?</div>
+              <div class="faq-q">Is it a physical product or a digital app?</div>
               <p>
-                You could call it that, but we think of Qlocka more as a
-                <strong>daily support system</strong>. It’s less about squeezing
-                more tasks into your day, and more about feeling calm, clear, and
-                intentional with the ones that matter.
+                Both. Qlocka combines a tactile planning board with magnets for
+                screen-free engagement, plus a mobile companion app for tracking,
+                reminders and progress visuals. Families can use one or both
+                depending on their needs.
               </p>
             </div>
 
             <div class="faq-item">
-              <div class="faq-q">Who is this not for?</div>
+              <div class="faq-q">Who is Qlocka for?</div>
               <p>
-                If you love strict systems, complex dashboards, and pushing at 110%
-                all the time, Qlocka may feel too gentle. It’s designed for
-                people who want sustainable progress — not burnout.
+                Qlocka is ideal for children aged 6–12, and adaptable for older or
+                neurodiverse learners. It supports kids who need help with planning,
+                focus, routines, emotional regulation and communication — and the
+                parents, teachers and therapists who support them.
               </p>
             </div>
 
             <div class="faq-item">
-              <div class="faq-q">How much will it cost?</div>
+              <div class="faq-q">How long before we see changes?</div>
               <p>
-                We’re still exploring pricing. Early access members will get the
-                most generous version of whatever we decide, with a clear, fair
-                explanation of why.
+                During a six-month trial with real families, most noticed positive
+                shifts within 2–4 weeks of consistent use — such as smoother
+                mornings, better follow-through and more cooperative routines. By
+                around 90 days, many children showed strong independence and
+                self-motivation.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q">What happens when my child “fails” or misses tasks?</div>
+              <p>
+                Qlocka treats incomplete tasks as learning moments, not failures.
+                Children are encouraged to reflect: what got in the way, how it
+                felt, and what could be tried tomorrow. This builds resilience,
+                flexibility and a healthy growth mindset.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q">Can Qlocka help with screen time?</div>
+              <p>
+                Yes. Families can link rewards to digital privileges, so children
+                “earn” screen time through completed tasks and consistent effort.
+                This teaches balance, delayed gratification and value exchange in a
+                digital world.
               </p>
             </div>
           </div>
 
           <div class="faq-cta">
-            <strong>You don’t have to decide anything today.</strong><br /><br />
-            For now, Qlocka is simply an idea that might make your days feel
-            lighter. If you’re curious, leave your email, read the updates, and see
-            if it continues to resonate.<br /><br />
-            If it does, great. If not, that’s okay too. No countdown timers, no
-            pressure — just a tool we’re trying to build carefully and honestly.
+            <strong>Long-term, what does Qlocka aim to build?</strong><br /><br />
+            Children who grow with Qlocka tend to:
+            <ul style="margin-top:0.4rem; padding-left:1.1rem;">
+              <li>Become more self-reliant and motivated.</li>
+              <li>Develop strong time management and focus.</li>
+              <li>Experience lower anxiety through predictable structure.</li>
+              <li>Perform better in academics, sports and social settings.</li>
+            </ul>
+            <br />
+            Above all, Qlocka is about raising children who
+            <strong>lead themselves</strong> — with clarity, resilience and joy.
           </div>
         </div>
       </section>
@@ -1215,19 +1321,46 @@
     <!-- FOOTER -->
     <footer>
       <div class="footer-inner">
-        <div>© <span id="year"></span> Qlocka. Built with care.</div>
+        <div>
+          © <span id="year"></span> Qlocka · Neuro-Encoding Tool For Children
+        </div>
         <div class="footer-links">
-          <span>Privacy-respecting by design</span>
+          <span>Launching soon...</span>
           <span>·</span>
-          <span>Early-stage concept</span>
+          <span>www.qlocka.com · www.qlocka.com.au</span>
         </div>
       </div>
     </footer>
   </div>
 
-  <!-- Tiny inline script just to update year (optional, can remove if you want pure HTML/CSS) -->
+  <!-- Scripts -->
   <script>
+    // Set year
     document.getElementById("year").textContent = new Date().getFullYear();
+
+    // JS-based smooth scroll for all in-page links (anchors with href starting with "#")
+    document.addEventListener("DOMContentLoaded", function () {
+      const headerOffset = 80; // space for sticky header
+
+      document.querySelectorAll('a[href^="#"]').forEach(function (link) {
+        link.addEventListener("click", function (e) {
+          const targetId = this.getAttribute("href").substring(1);
+          const targetEl = document.getElementById(targetId);
+
+          if (targetEl) {
+            e.preventDefault();
+
+            const elementPosition = targetEl.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          }
+        });
+      });
+    });
   </script>
 </body>
 </html>
