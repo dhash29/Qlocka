@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Qlocka – Designed To Make Life Easier</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    /* --------------------
+       COLOUR PALETTE
+       -------------------- */
+    :root {
+      --bg: #050816;
+      --bg-alt: #0b1020;
+      --card-bg: #101428;
+      --accent: #ff7a9a;
+      --accent-soft: rgba(255, 122, 154, 0.1);
+      --accent-2: #4fd1c5;
+      --accent-3: #f6ad55;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border-subtle: rgba(148, 163, 184, 0.25);
+      --radius-xl: 20px;
+      --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.65);
+      --max-width: 1100px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top left, #1f2937 0, #020617 45%);
+      color: var(--text-main);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* --------------------
+       GLOBAL LAYOUT
+       -------------------- */
+    .page {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 1.5rem 1.25rem 4rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(18px);
+      background: linear-gradient(
+        to bottom,
+        rgba(15, 23, 42, 0.95),
+        rgba(15, 23, 42, 0.5),
+        transparent
+      );
+      border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    .nav {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.75rem 1.25rem;
+      gap: 1.5rem;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-logo {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      background: conic-gradient(
+        from 180deg,
+        var(--accent),
+        var(--accent-2),
+        var(--accent-3),
+        var(--accent)
+      );
+      padding: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 30px rgba(248, 113, 113, 0.35);
+    }
+
+    .brand-logo-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      background: radial-gradient(circle at 30% 0%, #111827 0, #020617 75%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .brand-text-title {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    .badge-soon {
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      background: rgba(148, 163, 184, 0.1);
+      border: 1px solid rgba(148, 163, 184, 0.45);
+      color: var(--text-muted);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.15rem;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(to right, var(--accent), var(--accent-2));
+      transition: width 0.2s ease-out;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* --------------------
+       HERO SECTION
+       -------------------- */
+    .hero {
+      padding-top: 2.5rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 2.75rem;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: linear-gradient(
+        to right,
+        rgba(56, 189, 248, 0.12),
+        rgba(248, 113, 113, 0.08)
+      );
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--accent), transparent 70%);
+      box-shadow: 0 0 12px rgba(248, 113, 113, 0.85);
+    }
+
+    h1.hero-title {
+      font-size: clamp(2.4rem, 5vw, 3.4rem);
+      line-height: 1.1;
+      margin-top: 1rem;
+    }
+
+    .hero-gradient-text {
+      background: linear-gradient(
+        120deg,
+        var(--accent),
+        var(--accent-2),
+        var(--accent-3)
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-lede {
+      margin-top: 1rem;
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 34rem;
+    }
+
+    .hero-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+    }
+
+    .hero-pill {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.3);
+      padding: 0.4rem 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(12px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .hero-pill-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--accent-2);
+    }
+
+    .hero-actions {
+      margin-top: 1.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      align-items: center;
+    }
+
+    .hero-cta-primary {
+      border-radius: 999px;
+      padding: 0.8rem 1.4rem;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      background: conic-gradient(
+        from 160deg,
+        var(--accent),
+        var(--accent-2),
+        var(--accent-3),
+        var(--accent)
+      );
+      color: #0f172a;
+      font-weight: 600;
+      box-shadow: 0 16px 40px rgba(248, 113, 113, 0.45);
+    }
+
+    .hero-cta-secondary {
+      border-radius: 999px;
+      padding: 0.7rem 1.3rem;
+      font-size: 0.85rem;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: radial-gradient(circle at top left, #111827 0, #020617 70%);
+      cursor: pointer;
+    }
+
+    .hero-cta-secondary span {
+      font-size: 1.1rem;
+    }
+
+    .hero-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      max-width: 20rem;
+    }
+
+    /* Hero Visual */
+    .hero-visual {
+      position: relative;
+    }
+
+    .glass-card {
+      position: relative;
+      border-radius: 26px;
+      padding: 1.3rem 1.4rem;
+      background: radial-gradient(circle at top, #111827 0, #020617 70%);
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: -40%;
+      background: radial-gradient(
+        circle at 0% 0%,
+        rgba(248, 113, 113, 0.2),
+        transparent 50%
+      );
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .stat-tag {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    .product-name {
+      margin-top: 0.3rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .product-tagline {
+      margin-top: 0.3rem;
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .metric-grid {
+      margin-top: 1rem;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
+    }
+
+    .metric-card {
+      padding: 0.6rem 0.7rem;
+      border-radius: 16px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 0.75rem;
+    }
+
+    .metric-value {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .metric-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+    }
+
+    .metric-tag-chip {
+      margin-top: 0.45rem;
+      font-size: 0.65rem;
+      padding: 0.16rem 0.5rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.25rem;
+      color: var(--text-muted);
+    }
+
+    .metric-tag-chip-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent-3);
+    }
+
+    .problem-solution-tag {
+      margin-top: 1rem;
+      font-size: 0.74rem;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(248, 113, 113, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .orbit {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .orbit-dot {
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      border-radius: 999px;
+      background: radial-gradient(circle, var(--accent-2), transparent 70%);
+      box-shadow: 0 0 18px rgba(56, 189, 248, 0.7);
+    }
+
+    .orbit-dot:nth-child(1) {
+      top: 10%;
+      right: 8%;
+    }
+
+    .orbit-dot:nth-child(2) {
+      bottom: 12%;
+      left: 10%;
+    }
+
+    .orbit-dot:nth-child(3) {
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 4px;
+      height: 4px;
+      box-shadow: 0 0 14px rgba(248, 250, 252, 0.7);
+    }
+
+    /* --------------------
+       SECTION BASE
+       -------------------- */
+    section {
+      margin-top: 4rem;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.6rem;
+    }
+
+    .section-kicker {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+
+    .section-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      max-width: 25rem;
+    }
+
+    /* --------------------
+       PROBLEM SECTION
+       -------------------- */
+    .problem-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.8rem;
+    }
+
+    .problem-card {
+      background: rgba(15, 23, 42, 0.9);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 1.3rem 1.4rem;
+      box-shadow: var(--shadow-soft);
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    .problem-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.7rem;
+      color: var(--text-main);
+    }
+
+    .problem-card ul {
+      margin-top: 0.6rem;
+      padding-left: 1.1rem;
+      display: grid;
+      gap: 0.35rem;
+    }
+
+    .problem-highlight {
+      border-left: 3px solid var(--accent);
+      padding-left: 0.8rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* --------------------
+       HOW IT HELPS SECTION
+       -------------------- */
+    .benefit-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.1rem;
+    }
+
+    .benefit-card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 1.1rem 1.1rem 1.1rem;
+      position: relative;
+      overflow: hidden;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+      transition: transform 0.18s ease-out, box-shadow 0.18s ease-out,
+        border-color 0.18s ease-out;
+    }
+
+    .benefit-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        circle at top,
+        rgba(96, 165, 250, 0.2),
+        transparent 55%
+      );
+      opacity: 0;
+      transition: opacity 0.2s ease-out;
+      pointer-events: none;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 18px 40px rgba(15, 23, 42, 0.9);
+      border-color: rgba(96, 165, 250, 0.6);
+    }
+
+    .benefit-card:hover::before {
+      opacity: 1;
+    }
+
+    .benefit-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin-bottom: 0.6rem;
+    }
+
+    .benefit-icon.bg-1 {
+      background: rgba(59, 130, 246, 0.18);
+    }
+
+    .benefit-icon.bg-2 {
+      background: rgba(45, 212, 191, 0.18);
+    }
+
+    .benefit-icon.bg-3 {
+      background: rgba(251, 191, 36, 0.18);
+    }
+
+    .benefit-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--text-main);
+    }
+
+    .benefit-footer {
+      margin-top: 0.7rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      opacity: 0.9;
+    }
+
+    /* --------------------
+       HOW IT WORKS
+       -------------------- */
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .step-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      border: 1px dashed rgba(148, 163, 184, 0.5);
+      padding: 1.1rem 1.1rem;
+      background: rgba(15, 23, 42, 0.9);
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .step-number {
+      position: absolute;
+      top: 0.8rem;
+      right: 0.9rem;
+      font-size: 0.75rem;
+      color: rgba(148, 163, 184, 0.7);
+    }
+
+    .step-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 0.35rem;
+      color: var(--text-main);
+    }
+
+    .step-meta {
+      margin-top: 0.5rem;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* --------------------
+       SOCIAL PROOF / FUTURE USERS
+       -------------------- */
+    .social-proof {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.7rem;
+      align-items: center;
+    }
+
+    .quote-card {
+      background: rgba(15, 23, 42, 0.95);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--border-subtle);
+      padding: 1.3rem 1.4rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-card::before {
+      content: "“";
+      position: absolute;
+      top: -1rem;
+      left: 0.6rem;
+      font-size: 5rem;
+      color: rgba(148, 163, 184, 0.25);
+      line-height: 1;
+    }
+
+    .quote-body {
+      margin-top: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-author {
+      margin-top: 0.9rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .quote-author span {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      font-size: 0.75rem;
+      margin-top: 0.9rem;
+    }
+
+    .soft-pill {
+      padding: 0.3rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-muted);
+    }
+
+    /* --------------------
+       FAQ
+       -------------------- */
+    .faq-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 1.8rem;
+      align-items: flex-start;
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 0.8rem;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .faq-item {
+      border-radius: 14px;
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      padding: 0.8rem 0.9rem;
+      background: rgba(15, 23, 42, 0.9);
+    }
+
+    .faq-q {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-main);
+      margin-bottom: 0.25rem;
+    }
+
+    .faq-cta {
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      padding: 1.1rem 1.2rem;
+      background: radial-gradient(circle at top, #111827 0, #020617 70%);
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .faq-cta strong {
+      color: var(--text-main);
+    }
+
+    /* --------------------
+       FOOTER
+       -------------------- */
+    footer {
+      border-top: 1px solid rgba(148, 163, 184, 0.2);
+      margin-top: 3.5rem;
+      padding: 1.4rem 1.25rem 2rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    /* --------------------
+       RESPONSIVE
+       -------------------- */
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .hero-visual {
+        order: -1;
+      }
+      .problem-grid,
+      .social-proof,
+      .faq-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .benefit-grid,
+      .steps-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        display: none;
+      }
+      .wrapper {
+        padding-inline: 1rem;
+      }
+      .hero-points {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+      .benefit-grid,
+      .steps-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      section {
+        margin-top: 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- HEADER / NAV -->
+    <header>
+      <nav class="nav">
+        <div class="brand">
+          <div class="brand-logo">
+            <div class="brand-logo-inner">P</div>
+          </div>
+          <div>
+            <div class="brand-text-title">Qlocka</div>
+            <div class="badge-soon">Thoughtfully in development</div>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="#why">Why it exists</a>
+          <a href="#benefits">How it helps</a>
+          <a href="#how-it-works">How it works</a>
+          <a href="#faq">Questions</a>
+        </div>
+      </nav>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="wrapper">
+      <!-- HERO -->
+      <section class="hero">
+        <div>
+          <div class="eyebrow">
+            <span class="eyebrow-dot"></span>
+            Built for people who are tired of [the problem]
+          </div>
+
+          <h1 class="hero-title">
+            A calmer, smarter way to handle
+            <span class="hero-gradient-text">[the thing your product manages]</span>.
+          </h1>
+
+          <p class="hero-lede">
+            Qlocka isn’t here to be “just another” tool. It’s being designed
+            to quietly remove friction from your day, give you back mental space,
+            and make the helpful habits the easy habits.
+          </p>
+
+          <div class="hero-points">
+            <div class="hero-pill">
+              <span class="hero-pill-dot"></span>
+              Reduce daily micro-stress
+            </div>
+            <div class="hero-pill">
+              <span class="hero-pill-dot"></span>
+              Turn intentions into simple systems
+            </div>
+            <div class="hero-pill">
+              <span class="hero-pill-dot"></span>
+              Built for real, messy lives
+            </div>
+          </div>
+
+          <div class="hero-actions">
+            <button class="hero-cta-primary">
+              Get early access updates
+            </button>
+            <button class="hero-cta-secondary">
+              <span>⟶</span> See why this matters
+            </button>
+            <p class="hero-note">
+              No spam. Just occasional, honest updates as Qlocka takes shape.
+            </p>
+          </div>
+        </div>
+
+        <!-- HERO VISUAL / STATS -->
+        <div class="hero-visual">
+          <div class="glass-card">
+            <div class="stat-tag">Work in progress • Private beta soon</div>
+            <div class="product-name">
+              Qlocka
+              <span style="font-size: 0.75rem; color: var(--text-muted);">
+                · [Short descriptor e.g. “Daily rhythm companion”]
+              </span>
+            </div>
+            <p class="product-tagline">
+              Designed to make doing the right thing feel natural, not forced.
+            </p>
+
+            <div class="metric-grid">
+              <div class="metric-card">
+                <div class="metric-value">+90%</div>
+                <div class="metric-label">
+                  Users reported feeling more “in control” of their day after 2 weeks
+                  in prototype tests.
+                </div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-value">12 min</div>
+                <div class="metric-label">
+                  Average time saved per day by removing tiny, repeated decisions.
+                </div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-value">0</div>
+                <div class="metric-label">
+                  Pressure to be perfect. Built for small, sustainable progress.
+                </div>
+              </div>
+            </div>
+
+            <div class="metric-tag-chip">
+              <span class="metric-tag-chip-dot"></span>
+              Early testers say it “feels like someone quietly got my life”.
+            </div>
+
+            <div class="problem-solution-tag">
+              You already know what you “should” do.
+              <strong>We’re focused on making it actually happen.</strong>
+            </div>
+
+            <div class="orbit">
+              <div class="orbit-dot"></div>
+              <div class="orbit-dot"></div>
+              <div class="orbit-dot"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEM SECTION -->
+      <section id="why">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">The real problem</div>
+            <div class="section-title">
+              It’s not that you don’t care. It’s that life is loud.
+            </div>
+          </div>
+          <p class="section-subtitle">
+            Most people already know what they want to improve. The gap is between
+            <em>knowing</em> and <em>consistently doing</em> — especially when you’re
+            busy, tired, or pulled in a dozen directions.
+          </p>
+        </div>
+
+        <div class="problem-grid">
+          <div class="problem-card">
+            <h3>Modern life is a constant notification.</h3>
+            <p>
+              Between work, family, and screens, our attention is split into tiny
+              pieces. Good habits and helpful routines get squeezed into the gaps —
+              or pushed to “tomorrow”.
+            </p>
+            <ul>
+              <li>Important tasks blend into an endless to-do list.</li>
+              <li>Reminders nag, but rarely support you in a meaningful way.</li>
+              <li>You’re left feeling behind, even on the days you did a lot.</li>
+            </ul>
+          </div>
+
+          <div class="problem-card problem-highlight">
+            <p>
+              Qlocka is being built for this reality — not an idealised,
+              perfectly organised life. The goal is simple:
+              <strong>help you feel grounded, even when everything around you is
+              moving fast.</strong>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT HELPS / BENEFITS -->
+      <section id="benefits">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">How it helps</div>
+            <div class="section-title">
+              Gentle structure, without the overwhelm.
+            </div>
+          </div>
+          <p class="section-subtitle">
+            Think of Qlocka as a quiet co-pilot. It doesn’t shout for your
+            attention — it nudges, organises, and clears the path so you can do the
+            things that matter with less resistance.
+          </p>
+        </div>
+
+        <div class="benefit-grid">
+          <article class="benefit-card">
+            <div class="benefit-icon bg-1">🧭</div>
+            <h3 class="benefit-title">Turns chaos into clear next steps.</h3>
+            <p>
+              Instead of dumping everything into a giant list, Qlocka helps
+              you see just the <strong>one or two things</strong> that matter right
+              now — based on your energy, time, and priorities.
+            </p>
+            <div class="benefit-footer">
+              You decide the direction. It helps you choose the next step.
+            </div>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon bg-2">🌱</div>
+            <h3 class="benefit-title">Builds habits that actually fit your life.</h3>
+            <p>
+              Instead of forcing strict routines, it helps you design
+              <strong>flexible rhythms</strong> that adapt when your day doesn’t go
+              to plan — without the guilt spiral.
+            </p>
+            <div class="benefit-footer">
+              Progress is measured in consistency over time, not perfection.
+            </div>
+          </article>
+
+          <article class="benefit-card">
+            <div class="benefit-icon bg-3">🧠</div>
+            <h3 class="benefit-title">Gives your brain fewer things to juggle.</h3>
+            <p>
+              Offload recurring decisions and small tasks. Free up mental space for
+              focus, creativity, and being present with the people you care about.
+            </p>
+            <div class="benefit-footer">
+              Less decision fatigue, more clarity.
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section id="how-it-works">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Simple flow</div>
+            <div class="section-title">
+              Designed to fit into your day in minutes.
+            </div>
+          </div>
+          <p class="section-subtitle">
+            You don’t need another full-time “system” to maintain. The first version
+            of Qlocka is focused on a light, repeatable daily flow that takes
+            less than 5 minutes.
+          </p>
+        </div>
+
+        <div class="steps-grid">
+          <article class="step-card">
+            <div class="step-number">01</div>
+            <div class="step-label">Start with what’s real.</div>
+            <p>
+              Quickly capture what’s on your plate — work, family, personal — without
+              overthinking. Just brain-dump the noise.
+            </p>
+            <p class="step-meta">
+              The product will gently group, prioritise, and surface what actually
+              needs your attention.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">02</div>
+            <div class="step-label">Choose your “minimums”.</div>
+            <p>
+              Set tiny, non-intimidating commitments you can keep even on busy days.
+              These become your <strong>anchor habits</strong>.
+            </p>
+            <p class="step-meta">
+              Over time, these anchors compound into real momentum.
+            </p>
+          </article>
+
+          <article class="step-card">
+            <div class="step-number">03</div>
+            <div class="step-label">Reflect, adjust, repeat.</div>
+            <p>
+              At the end of the day, take a moment to check in. What worked? What
+              didn’t? Qlocka learns and adapts with you.
+            </p>
+            <p class="step-meta">
+              The product evolves around your reality — not the other way around.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <!-- SOCIAL PROOF / FUTURE USERS -->
+      <section>
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Who this is for</div>
+            <div class="section-title">
+              Built for humans with full, imperfect lives.
+            </div>
+          </div>
+          <p class="section-subtitle">
+            Whether you’re juggling work and family, studying, building something on
+            the side — or all of the above — Qlocka is for people who are
+            done with “hustle harder” and ready for “live better”.
+          </p>
+        </div>
+
+        <div class="social-proof">
+          <div class="quote-card">
+            <div class="quote-body">
+              “I don’t need another app telling me I’m behind. I need something that
+              understands that some days are heavy, some days are light — and helps
+              me navigate both without feeling like I failed.”
+            </div>
+            <div class="quote-author">
+              This is the feeling Qlocka is being built around —
+              <span>soft structure, strong support.</span>
+            </div>
+
+            <div class="badge-row">
+              <div class="soft-pill">Thoughtful, not shouty</div>
+              <div class="soft-pill">Flexible, not fragile</div>
+              <div class="soft-pill">Human-first, not feature-first</div>
+            </div>
+          </div>
+
+          <div class="faq-cta">
+            <strong>Right now, we’re listening.</strong><br /><br />
+            We’re in the stage of talking to real people living real, busy lives.
+            If any of this resonates with you, you’re exactly who we’re building for.
+            <br /><br />
+            Want to share what you struggle with most? Add your email to the early
+            access list above, and we’ll invite you to a short, no-pressure
+            conversation as we shape Qlocka.
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq">
+        <div class="section-header">
+          <div>
+            <div class="section-kicker">Questions</div>
+            <div class="section-title">
+              A few things you might be wondering.
+            </div>
+          </div>
+          <p class="section-subtitle">
+            We’re still early — which means things will evolve. Here’s what we know
+            for sure, and what we’re still exploring.
+          </p>
+        </div>
+
+        <div class="faq-grid">
+          <div class="faq-list">
+            <div class="faq-item">
+              <div class="faq-q">Is this available to use right now?</div>
+              <p>
+                Not yet. We’re still refining the experience with a small group of
+                early testers. If you join the early access list, you’ll be the
+                first to know when we open the doors.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q">Is this another productivity app?</div>
+              <p>
+                You could call it that, but we think of Qlocka more as a
+                <strong>daily support system</strong>. It’s less about squeezing
+                more tasks into your day, and more about feeling calm, clear, and
+                intentional with the ones that matter.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q">Who is this not for?</div>
+              <p>
+                If you love strict systems, complex dashboards, and pushing at 110%
+                all the time, Qlocka may feel too gentle. It’s designed for
+                people who want sustainable progress — not burnout.
+              </p>
+            </div>
+
+            <div class="faq-item">
+              <div class="faq-q">How much will it cost?</div>
+              <p>
+                We’re still exploring pricing. Early access members will get the
+                most generous version of whatever we decide, with a clear, fair
+                explanation of why.
+              </p>
+            </div>
+          </div>
+
+          <div class="faq-cta">
+            <strong>You don’t have to decide anything today.</strong><br /><br />
+            For now, Qlocka is simply an idea that might make your days feel
+            lighter. If you’re curious, leave your email, read the updates, and see
+            if it continues to resonate.<br /><br />
+            If it does, great. If not, that’s okay too. No countdown timers, no
+            pressure — just a tool we’re trying to build carefully and honestly.
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div>© <span id="year"></span> Qlocka. Built with care.</div>
+        <div class="footer-links">
+          <span>Privacy-respecting by design</span>
+          <span>·</span>
+          <span>Early-stage concept</span>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Tiny inline script just to update year (optional, can remove if you want pure HTML/CSS) -->
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
